@@ -29,17 +29,17 @@ clone_script:
              mkdir 'c:\projects\cntk_yml_docs'
         }
 
-        git config --global core.autocrlf true
-        git config core.autocrlf
+    - git config --global core.autocrlf true
+    - git config core.autocrlf
 
-        cd c:\projects
-        git clone --depth 1 http://github.com/Microsoft/cntk
+    - cd c:\projects
+    - git clone --depth 1 http://github.com/Microsoft/cntk
 
-        cd cntk
-        git submodule -q update --init -- Source/Multiverso
-        
-        cd c:\projects
-        git clone --depth 1 https://github.com/bianliu1013/cntk_yml_docs
+    - cd cntk
+    - git submodule -q update --init -- Source/Multiverso
+ 
+    - cd c:\projects
+    - git clone --depth 1 https://github.com/bianliu1013/cntk_yml_docs
     
 before_build:
     - cd c:\projects\cntk\Tools\devInstall\Windows
