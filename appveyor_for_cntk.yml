@@ -42,7 +42,7 @@ build:
   
 
 on_success:
-    - ps: Write-Host "appveyor.xml in cntk_yml docs repo"
+    - ps: Write-Host "appveyor.xml on_success"
     - cd c:\projects\CNTK\x64\Release\Python
     - ps: $files = gci -name *.whl
     - dir
@@ -62,7 +62,7 @@ on_success:
     - git push -u origin master -f
 
 on_finish:
-    - ps: Write-Host "appveyor.xml in cntk_yml docs repo"
+    - ps: Write-Host "appveyor.xml on_finish"
     - cd c:\projects\CNTK\x64\Release\Python
     - dir
     - ps: $files = gci -name *.whl
@@ -83,7 +83,7 @@ on_finish:
     
     
 on_failure:
-    - ps: Write-Host "appveyor.xml in cntk_yml docs repo"
+    - ps: Write-Host "appveyor.xml on_finish"
     - cd c:\projects\CNTK\x64\Release\Python
     - dir
     - ps: $files = gci -name *.whl
