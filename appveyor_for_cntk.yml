@@ -1,12 +1,9 @@
- version: 1.0.{build}
-branches:
-  only:
-  - master
+version: 1.0.{build}
 skip_tags: true
 build_cloud: cntk-python-ci-build
 image: appveyor-build
 configuration: Release
-clone_depth: 1
+
 init:
     - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
