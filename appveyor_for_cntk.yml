@@ -42,8 +42,11 @@ build:
   
 
 on_success:
+    - ps: Write-Host "appveyor.xml in cntk_yml docs repo"
     - cd c:\projects\CNTK\x64\Release\Python
-    - pip install cntk-2.0rc1-cp35-cp35m-win_amd64.whl
+    - ps: $files = gci -name *.whl
+    - dir
+    - ps: pip install $files
     - cd c:\projects\cntk\bindings\python\doc
     - call build.bat
     - ps: Write-Host "begin on_success"
@@ -59,8 +62,11 @@ on_success:
     - git push -u origin master -f
 
 on_finish:
+    - ps: Write-Host "appveyor.xml in cntk_yml docs repo"
     - cd c:\projects\CNTK\x64\Release\Python
-    - pip install cntk-2.0rc1-cp35-cp35m-win_amd64.whl
+    - dir
+    - ps: $files = gci -name *.whl
+    - ps: pip install $files
     - cd c:\projects\cntk\bindings\python\doc
     - call build.bat
     - ps: Write-Host "begin on_success"
@@ -77,8 +83,11 @@ on_finish:
     
     
 on_failure:
+    - ps: Write-Host "appveyor.xml in cntk_yml docs repo"
     - cd c:\projects\CNTK\x64\Release\Python
-    - pip install cntk-2.0rc1-cp35-cp35m-win_amd64.whl
+    - dir
+    - ps: $files = gci -name *.whl
+    - ps: pip install $files
     - cd c:\projects\cntk\bindings\python\doc
     - call build.bat
     - ps: Write-Host "begin on_success"
