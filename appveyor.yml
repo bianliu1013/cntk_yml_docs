@@ -30,7 +30,6 @@ before_build:
 
     
 build:
-    - ps: Write-Host "begin build"
     project: appveyorTest.sln
     verbosity: minimal
   
