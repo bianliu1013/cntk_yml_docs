@@ -35,7 +35,7 @@ build:
   
 on_success:
     - ps: Write-Host "begin on_success"
-    - ps: Copy-Item -Path C:\projects\appveyorTest\bin -Filter *.exe -Destination c:\projects\cntk_yml_docs\docs –Recurse
+    - ps: Copy-Item -Path C:\projects\appveyorTest\bin -Destination c:\projects\cntk_yml_docs\docs –Recurse
     - git config --global credential.helper store
     - ps: ac "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
     - cd c:\projects\cntk_yml_docs
