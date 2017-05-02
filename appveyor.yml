@@ -17,6 +17,7 @@ clone_script:
     - git clone --depth 1 https://github.com/bianliu1013/appveyortest
 
 before_build:
+    - cd c:\projects\appveyortest
     - git checkout master
     - git config --global credential.helper store
     - ps: ac "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
