@@ -3,14 +3,8 @@ configuration: Release
 platform: Any CPU
 
 init:
-- ps: >-
-     if([System.IO.Directory]::Exists('c:\projects\cntk_yml_docs')){
-         Remove-Item 'c:\projects\cntk_yml_docs' -Force -Recurse   
-    }
-    
-    mkdir 'c:\projects\cntk_yml_docs'
-    
-    cd c:\projects\cntk_yml_docs
+- ps: >-     
+    cd c:\projects
     git clone --depth 1 https://github.com/bianliu1013/cntk_yml_docs
 
 
