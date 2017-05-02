@@ -13,6 +13,7 @@ before_build:
     - git checkout master
     - git config --global credential.helper store
     - ps: ac "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
+    - ps: Write-Host "appveyor.xml in cntk_yml docs repo"
 
     
 build:
