@@ -11,24 +11,31 @@ environment:
     secure: kXK95TSkOJShIcqMV91li5J1hbpfUrN8zVML962Ob4lvm1lA2guZzyk1iwgk/Cud
   
 clone_script:
+    - ps: Write-Host "before clone_script"
     - cd c:\projects
     - git clone --depth 1 https://github.com/bianliu1013/cntk_yml_docs
     - cd c:\projects
     - git clone --depth 1 https://github.com/bianliu1013/appveyortest
+    - ps: Write-Host "end clone_script"
 
 before_build:
+    - ps: Write-Host "begin before_build"
     - cd c:\projects\appveyortest
     - git checkout master
     - git config --global credential.helper store
     - ps: ac "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
     - ps: Write-Host "appveyor.xml in cntk_yml docs repo"
+    - ps: Write-Host "end before_build"
+    
 
     
 build:
-  project: appveyorTest.sln
-  verbosity: minimal
+    - ps: Write-Host "begin build"
+    project: appveyorTest.sln
+    verbosity: minimal
   
 on_success:
+    - ps: Write-Host "begin on_success"
     - ps: Copy-Item -Path C:\projects\appveyorTest\bin -Filter *.exe -Destination c:\projects\cntk_yml_docs\docs –Recurse
     - git config --global credential.helper store
     - ps: ac "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
