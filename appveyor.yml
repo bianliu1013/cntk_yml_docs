@@ -3,14 +3,19 @@ configuration: Release
 platform: Any CPU
 
 init:
-   - cd c:\projects
-   - git clone --depth 1 https://github.com/bianliu1013/cntk_yml_docs
+
 
 
 environment:
   github_access_token:
     secure: kXK95TSkOJShIcqMV91li5J1hbpfUrN8zVML962Ob4lvm1lA2guZzyk1iwgk/Cud
   
+clone_script:
+    - cd c:\projects
+    - git clone --depth 1 https://github.com/bianliu1013/cntk_yml_docs
+    - cd c:\projects
+    - git clone --depth 1 https://github.com/bianliu1013/appveyortest
+
 before_build:
     - git checkout master
     - git config --global credential.helper store
