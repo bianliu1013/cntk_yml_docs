@@ -3,9 +3,8 @@ configuration: Release
 platform: Any CPU
 
 init:
-- ps: >-     
-    cd c:\projects
-    git clone --depth 1 https://github.com/bianliu1013/cntk_yml_docs
+   - cd c:\projects
+   - git clone --depth 1 https://github.com/bianliu1013/cntk_yml_docs
 
 
 environment:
