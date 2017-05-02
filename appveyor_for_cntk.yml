@@ -14,28 +14,13 @@ environment:
   APPVEYOR_RDP_PASSWORD: '#Bugsfor$'
   
 clone_script:
-    - ps: >-
-        if(![System.IO.Directory]::Exists('c:\projects')){
-                "will create projects folder"
-                mkdir 'c:\projects'
-            }
-
-        if([System.IO.Directory]::Exists('c:\projects\cntk')){
-                 Remove-Item 'c:\projects\cntk' -Force -Recurse
-            }
-            
-        if([System.IO.Directory]::Exists('c:\projects\cntk_yml_docs')){
-             Remove-Item 'c:\projects\cntk_yml_docs' -Force -Recurse
-             mkdir 'c:\projects\cntk_yml_docs'
-        }
-
     - git config --global core.autocrlf true
     - git config core.autocrlf
 
     - cd c:\projects
     - git clone --depth 1 http://github.com/Microsoft/cntk
 
-    - cd cntk
+    - cd c:\projects\cntk
     - git submodule -q update --init -- Source/Multiverso
  
     - cd c:\projects
