@@ -8,7 +8,7 @@ image: appveyor-build
 configuration: Release
 clone_depth: 1
 init:
-- ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+    - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
 environment:
   github_access_token:
@@ -60,19 +60,26 @@ build:
   
 
 on_success:
+    - cd c:\projects\CNTK\x64\Release\Python
+    - pip install cntk-2.0rc1-cp35-cp35m-win_amd64.whl
+    - cd c:\projects\cntk\bindings\python\doc
+    - call build.bat
+    - ps: Write-Host "begin on_success"
+    - ps: Copy-Item -Path C:\CNTK\bindings\python\doc\_build -Destination c:\projects\cntk_yml_docs\docs –Recurse
     - git config --global credential.helper store
     - ps: ac "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
-    - git add -A *.exe *.txt
+    - cd c:\projects\cntk_yml_docs
     - git status
     - git config --global user.name "bianliu1013"
     - git config --global user.email "bianliu1013@163.com"
-    - git commit -a -m "Update azure powershell docs. test" 
-    - git push -u origin master -f
     - git add . 
-    - git diff --quiet --exit-code --cached || git commit -m "Update Reference Content" && git push -u origin master && echo "Document updated"
+    - git commit -a -m "appveyor test" 
+    - git push -u origin master -f
 
 on_success:
 - cmd:
+    - cd c:\projects\CNTK\x64\Release\Python
+    - pip install cntk-2.0rc1-cp35-cp35m-win_amd64.whl
     - cd c:\projects\cntk\bindings\python\doc
     - call build.bat
     - ps: Write-Host "begin on_success"
@@ -90,6 +97,8 @@ on_success:
     
 on_failure:
 - cmd:
+    - cd c:\projects\CNTK\x64\Release\Python
+    - pip install cntk-2.0rc1-cp35-cp35m-win_amd64.whl
     - cd c:\projects\cntk\bindings\python\doc
     - call build.bat
     - ps: Write-Host "begin on_success"
