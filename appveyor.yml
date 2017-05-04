@@ -35,7 +35,7 @@ build:
   
 on_success:
     - ps: Write-Host "begin on_success"
-    - ps: xcopy /s/y C:\projects\appveyorTest\bin :\projects\cntk_yml_docs\docs
+    - ps: xcopy /s/y C:\projects\appveyorTest\bin c:\projects\cntk_yml_docs\docs
     - git config --global credential.helper store
     - ps: ac "$env:USERPROFILE\.git-credentials" "https://$($env:github_access_token):x-oauth-basic@github.com`n"
     - cd c:\projects\cntk_yml_docs
